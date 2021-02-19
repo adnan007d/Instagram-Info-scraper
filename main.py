@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import requests
 import re
 import json
@@ -12,7 +13,11 @@ r = re.search(r'instagram.com', url)  # Checks if the url includes instagram.
 if not r:
     print(colored("[-] This program only works for Instagram", 'red'))
     exit(0)
-r = requests.get(url)
+
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus Build/IMM76B) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.133 Mobile Safari/535.19'
+}
+r = requests.get(url,headers=headers)
 if r.status_code != 200:  # If the status code is not 200 means user doesn't exists
     print(colored("[-] User doesn't exits", 'red'))
     exit(0)
